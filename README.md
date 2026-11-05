@@ -1,0 +1,5 @@
+Escogí una aplicación en Python con Flask, con los endpoints /saludo (log INFO), /error (log ERROR con respuesta 500) y /metrics, para las métricas usé la librería prometheus-client, con un contador de peticiones y un histograma de latencia, para los logs creé un handler propio con logging y socket que envía cada evento como JSON por TCP a Logstash (puerto 5001), con el campo application en mi-app-python, agregué el job MetricasPython en prometheus.yml apuntando a host.docker.internal:8000 y reinicié Prometheus, creé en Grafana un dashboard propio con tres paneles (peticiones por segundo, errores 500 y latencia p95), y en Kibana dos Data Views, mi-app-python y el combinado ambas-apps, como problemas tuve que detuve la app Python sin querer, Docker Desktop estaba cerrado y la app Java estaba caída, y los resolví volviendo a iniciar cada servicio y verificando los jobs en localhost:9090/targets
+
+*PDF con las capturas*
+
+[reto-8.pdf](https://github.com/user-attachments/files/34447409/reto-8.pdf)
